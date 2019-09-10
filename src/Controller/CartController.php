@@ -40,5 +40,25 @@ class CartController extends AbstractController
         return $this->redirectToRoute('cart');
     }
 
+    /**
+     * @Route("/checkout", name="cart_checkout")
+     */
+    public function checkout(ProductRepository $productRepository)
+    {
+        $cart = $this->session->get("Product", []);
 
+        $Products = array();
+        foreach($cart as $id => $product){
+            array_push($Products, ["Amount" => $product["Amount"], "Product" => $productRepository->find($id)]);
+        }
+
+
+
+
+
+
+        return $this->render('cart/checkout.html.twig', [
+            "Products" => $Products,
+        ]);
+    }
 }

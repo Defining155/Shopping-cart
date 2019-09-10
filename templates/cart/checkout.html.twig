@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Checkout!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {{ form_start(submitForm) }}
+        {{ form_widget(submitForm) }}
+        <input class="btn btn-success" type="submit" value="Verstuur">
+        {{ form_end(submitForm) }}
+    </div>
+{% endblock %}

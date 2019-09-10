@@ -3,26 +3,19 @@
 {% block title %}Producten lijst{% endblock %}
 
 {% block body %}
-    <h1>Product index</h1>
+    <h1>Winkelwagen</h1>
 
     <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Naam</th>
-            <th>Prijs</th>
-            <th>Description</th>
-            <th>actions</th>
-        </tr>
-        </thead>
         <tbody>
         {% for product in Products %}
             <tr>
-         aantal:  {{ product.Amount }} <br>
                 naam: {{ product.Product.Naam }} <br>
+                aantal: {{ product.Amount }} <br>
+                prijs: {{ product.Product.Prijs }} <br><br>
+
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
+    <a href="{{ path('cart_checkout') }}"><button type="button" class="btn btn-secondary">Afrekenen</button></a>
 {% endblock %}
