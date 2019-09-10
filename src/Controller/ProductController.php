@@ -99,10 +99,10 @@ public function add(Request $request, Product $product, ProductRepository $produ
         $cart = $this->session->get("Product", []);
         $id = $product->getId();
 
-        if (isset($cart[$id])) {
-            $cart[$id]["Amount"]++;
+        if (isset($cart[$product->getId()])) {
+            $cart[$product->getId()]["Amount"]++;
         } else {
-            $cart[$id]["Amount"] = 1;
+            $cart[$product->getId()]["Amount"] = 1;
         }
 
         $this->session->set("Product", $cart);
@@ -112,7 +112,6 @@ public function add(Request $request, Product $product, ProductRepository $produ
             'product' => $productRepository->findAll(),
         ]);
     }
-
 
     /**
      * @Route("/{id}", name="product_delete", methods={"DELETE"})
