@@ -53,7 +53,31 @@ class CartController extends AbstractController
         }
 
 
+        $message = (new \Swift_Message('Betaling succesvol '))
+            ->setFrom('bol@com.com')
+            ->setTo('1030920@mborijnland.nl')
+            ->setBody(
+                $this->renderView(
+                // templates/emails/registration.html.twig
+                    'emails/registration.html.twig',
+                    ['name' => $name]
+                ),
+                'text/html'
+            )
 
+            // you can remove the following code if you don't define a text version for your emails
+            ->addPart(
+                $this->renderView(
+                    'emails/registration.txt.twig',
+                    ['name' => $name]
+                ),
+                'text/plain'
+            )
+        ;
+
+        $mailer->send($message);
+
+        return $this->render(...);
 
 
 
