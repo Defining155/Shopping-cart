@@ -17,13 +17,5 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/cart", name="cart")
-     */
-    public function cart()
-    {
-        return $this->render('product/cart.html.twig', [
-            'controller_name' => 'DefaultController',
-        ]);
-    }
+
 }

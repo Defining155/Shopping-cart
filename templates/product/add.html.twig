@@ -23,9 +23,9 @@
                 <td>{{ product.Prijs }}</td>
                 <td>{{ product.description }}</td>
                 <td>
-                    <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
-                    <a href="{{ path('product_add', {'id': product.id}) }}">add to card</a>
+                    <a href="{{ path('product_show', {'id': product.id}) }}"><button type="button" class="btn btn-secondary">show</button></a>
+                    <a href="{{ path('product_edit', {'id': product.id}) }}"><button type="button" class="btn btn-warning">edit</button></a>
+                    <a href="{{ path('product_add', {'id': product.id}) }}"><button type="button" class="btn btn-success">add to cart</button></a>
                 </td>
             </tr>
         {% else %}
@@ -36,5 +36,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('product_new') }}">Create new</a>
+    <a href="{{ path('product_new') }}"><button type="button" class="btn btn-secondary">create new</button></a>
 {% endblock %}

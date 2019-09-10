@@ -60,16 +60,6 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="product_show", methods={"GET"})
-     */
-    public function show(Product $product): Response
-    {
-        return $this->render('product/show.html.twig', [
-            'product' => $product,
-        ]);
-    }
-
-    /**
      * @Route("/{id}/edit", name="product_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Product $product): Response
@@ -93,7 +83,7 @@ class ProductController extends AbstractController
     /**
      * @Route("/{id}/add-cart", name="product_add", methods={"GET","POST"})
      */
-public function add(Request $request, Product $product, ProductRepository $productRepository): Response
+    public function add(Request $request, Product $product, ProductRepository $productRepository): Response
     {
 
         $cart = $this->session->get("Product", []);
@@ -112,6 +102,24 @@ public function add(Request $request, Product $product, ProductRepository $produ
             'product' => $productRepository->findAll(),
         ]);
     }
+
+    /**
+ * @Route("/{id}/show-cart", name="product_show", methods={"GET","POST"})
+ */
+    public function show(product $details, productRepository $productRepository)
+    {
+
+        $cart = $this->session->get("Product", []);
+        $newcart = array();
+        foreach ($cart as $id => $details) {
+            array_push($newcart, ["Amount" => $details["Amount"], "Product" => $productRepository->find($details->getId())]);
+        }
+        return $this->render('cart/index. html.twig', [
+            "products" => $newcart,
+        ]);
+    }
+
+
 
     /**
      * @Route("/{id}", name="product_delete", methods={"DELETE"})
