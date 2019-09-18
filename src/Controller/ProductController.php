@@ -97,7 +97,7 @@ class ProductController extends AbstractController
 
         $this->session->set("Product", $cart);
 
-        var_dump($this->session->get('Product'));
+    
         return $this->render('product/add.html.twig', [
             'product' => $productRepository->findAll(),
         ]);
@@ -112,14 +112,12 @@ class ProductController extends AbstractController
         $cart = $this->session->get("Product", []);
         $newcart = array();
         foreach ($cart as $id => $details) {
-            array_push($newcart, ["Amount" => $details["Amount"], "Product" => $productRepository->find($details->getId())]);
+            array_push($newcart, ["Amount" => $details["Amount"], "Product" => $productRepository->find($id)]);
         }
-        return $this->render('cart/index. html.twig', [
+        return $this->render('cart\index.html.twig', [
             "products" => $newcart,
         ]);
     }
-
-
 
     /**
      * @Route("/{id}", name="product_delete", methods={"DELETE"})
